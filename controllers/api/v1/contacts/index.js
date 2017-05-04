@@ -35,8 +35,32 @@ function handleErrors(code, res, status, errors) {
 }
 
 router.get('/', (req, res) => {
-    Contacts.all().then(result => {
+    let query = req.query;
+
+    Contacts.all(query).then(result => {
         handleResult(res, result);
+    });
+});
+
+router.get('/:id', (req, res) => {
+    Contacts.get(req.params.id).then(result => {
+        if (result) {
+            handleResult(res, result);
+        } else {
+            handleErrors(
+                200,
+                res,
+                0,
+                'Invalid id'
+            );
+        }
+    }).catch(errors => {
+        handleErrors(
+            200,
+            res,
+            0,
+            errors
+        );
     });
 });
 
@@ -58,6 +82,33 @@ router.post('/', (req, res) => {
     })
 });
 
+router.put('/:id', (req, res) => {
+    Contacts.update(req.params.id, req.body).then(result => {
+        if (result) {
+            handleMessage(
+                200,
+                res,
+                1,
+                'Contact successfully updated'
+            );
+        } else {
+            handleErrors(
+                200,
+                res,
+                0,
+                'Invalid id'
+            );
+        }
+    }).catch(errors => {
+        handleErrors(
+            200,
+            res,
+            0,
+            errors
+        );
+    })
+});
+
 router.delete('/:id', (req, res) => {
     Contacts.remove(req.params.id).then(result => {
         handleMessage(
@@ -65,7 +116,7 @@ router.delete('/:id', (req, res) => {
             res,
             1,
             'Contact successfully removed'
-        )
+        );
     });
 });
 

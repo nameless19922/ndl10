@@ -24,6 +24,13 @@ input::-ms-clear {
     display: none;
 }
 
+textarea {
+    height: 100px;
+
+    font-family: Helvetica;
+    overflow: auto;
+}
+
 *:focus {
     outline: none;
 }
@@ -88,8 +95,6 @@ ul {
     margin-left: 30px;
 }
 
-
-
 .menu__item-a {
     color: #fff;
     font-size: 14px;
@@ -120,6 +125,12 @@ ul {
     flex: 0 1 20%;
 }
 
+.contacts__info {
+    margin-top: 60px;
+
+    text-align: center;
+}
+
 .contacts__list {
     margin-top: 30px;
 }
@@ -129,6 +140,10 @@ ul {
     align-items: center;
     justify-content: space-between;
     height: 60px;
+}
+
+.contacts__item-field {
+    font-size: 24px;
 }
 
 .contacts__item:not(:last-child) {
@@ -193,7 +208,7 @@ ul {
 }
 
 .form__control {
-    padding-bottom: 10px;
+    padding: 10px 0;
 
     border: none;
     border-bottom: 2px solid #dedede;
@@ -202,6 +217,11 @@ ul {
 
 .form__select {
     padding: 10px 0;
+
+    border: none;
+    border-bottom: 2px solid #dedede;
+    color: #686868;
+    font-size: 18px;
 }
 
 .button {
@@ -211,6 +231,7 @@ ul {
     border: 1px solid #00897b;
     border-radius: 3px;
     color: #fff;
+    cursor: pointer;
     font-size: 18px;
 }
 

@@ -5,24 +5,28 @@
 
         <div class="contacts__filter">
             <div class="contacts__filter-cell">
-                <input type="text" class="form__control" placeholder="Search..." v-model="search.input">
+                <input type="text" class="form__control" placeholder="Search..." v-model="search.query" @keyup="getAll">
             </div>
             <div class="contacts__filter-cell">
-                <select class="form__select" v-model="search.select">
-                    <option value="0">Firstname</option>
-                    <option value="1">Lastname</option>
-                    <option value="2">Phone</option>
+                <select class="form__select" v-model="search.field" @change="getAll">
+                    <option value="firstname">Firstname</option>
+                    <option value="lastname">Lastname</option>
+                    <option value="phone">Phone</option>
                 </select>
             </div>
+        </div>
+
+        <div v-if="!shared.contacts.length" class="contacts__info">
+            List is empty
         </div>
 
         <ul class="contacts__list">
             <li class="contacts__item" v-for="contact in shared.contacts">
                 <div class="contacts__item-cell">
-                    <a class="contacts__item-name" href="javascript:;">{{ contact.firstname }} {{ contact.lastname }}</a> {{ contact.phone }}
+                    <a class="contacts__item-name" :href="'/contacts/id/' + contact._id">{{ contact.firstname }} {{ contact.lastname }}</a> {{ contact.phone }}
                 </div>
                 <div class="contacts__item-cell">
-                    <a class="contacts__item-edit" href="javascript:;"></a>
+                    <a class="contacts__item-edit" :href="'/contacts/edit/' + contact._id"></a>
                     <a class="contacts__item-remove" href="javascript:;" @click.prevent="remove(contact._id)"></a>
                 </div>
             </li>

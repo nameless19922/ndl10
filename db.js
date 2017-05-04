@@ -6,18 +6,18 @@ let state = {
 
 module.exports = {
     connect: (url, done) => {
-        if (state.db) {
-            return done();
-        }
-
-        mongoClient.connect(url, (err, db) => {
-            if (err) {
-                return done(err)
+        return new Promise((resolve, reject) => {
+            if (state.db) {
+                resolve(true);
             }
 
-            state.db = db;
-            done();
-        })
+            mongoClient.connect(url).then(db => {
+                state.db = db;
+                resolve(true);
+            }).catch(error => {
+                reject(error);
+            })
+        });
     },
 
     get: () => {
@@ -26,11 +26,7 @@ module.exports = {
 
     close: () => {
         if (state.db) {
-            state.db.close((err, result) => {
-                state.db = null;
-                state.mode = null;
-                done(err);
-            })
+            state.db.close();
         }
     }
 }

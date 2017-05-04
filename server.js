@@ -1,11 +1,22 @@
-const express     = require('express');
-const ejs         = require('ejs-locals');
-const path        = require('path');
-const bodyParser  = require('body-parser');
-const morgan      = require('morgan');
+const express    = require('express');
+const ejs        = require('ejs-locals');
+const path       = require('path');
+const bodyParser = require('body-parser');
+const morgan     = require('morgan');
+const logger     = require('./logger');
 
-const config      = require('./config');
-const db          = require('./db');
+const config     = require('./config');
+const db         = require('./db');
+
+function handleErrors(code, res, status, errors) {
+    res.status(code);
+    res.json({
+        response: {
+            status,
+            errors
+        }
+    });
+}
 
 module.exports = port => {
     const app = express();
@@ -17,42 +28,42 @@ module.exports = port => {
 
     app.use(express.static(path.join(__dirname, '/public')));
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: true}));
-    app.use(morgan(':date[clf] :method :url :status - :response-time ms'));
+    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(morgan('combined', { "stream": logger.stream }));
 
     app.use(require('./controllers'));
-
-
-    app.use('/api', (err, req, res, next) => {
-        console.log(err.stack);
-    });
 
     app.use((req, res, next) => {
         res.status(404)
             .render('404', {
-                title: 'Страница не найдена'
+                title: 'Page not found'
             });
     });
 
-    app.use((err, req, res, next) => {
-        if (res.headersSent) {
-            return next(err);
-        }
+    app.use('/api', (err, req, res, next) => {
+        handleErrors(
+            200,
+            res,
+            0,
+            err.message
+        );
+    });
 
-        res.status(500)
+    app.use(function(err, req, res, next){
+        res.status(err.status || 500)
             .render('500', {
-                title: 'Внутрення ошибка сервера'
+                title: 'Internal server error'
             });
     });
 
-    db.connect(`${config.mongodb.defaultUri}/${config.mongodb.defaultDb}`, (err) =>{
-        if (err) {
-            console.error('Unable to connect to Mongodb.')
-            process.exit(1)
-        } else {
+    db.connect(`${config.mongodb.defaultUri}/${config.mongodb.defaultDb}`).then(result => {
+        if (result) {
             app.listen(port, () => {
-                console.log(`Start http server at ${port}`);
+                logger.info(`Start http server at ${port}`);
             });
         }
+    }).catch(err => {
+        logger.error(err.message);
+        process.exit(1);
     });
 }

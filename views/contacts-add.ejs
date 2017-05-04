@@ -15,7 +15,11 @@
                 </div>
 
                 <div class="form__line">
-                    <input type="text" class="form__control" placeholder="Phone" v-model="contact.phone">
+                    <input id="phone" type="text" class="form__control" placeholder="Phone" v-model="contact.phone">
+                </div>
+
+                <div class="form__line">
+                    <textarea class="form__control" placeholder="Additional Information" v-model="contact.additional"></textarea>
                 </div>
 
                 <div class="form__submit">

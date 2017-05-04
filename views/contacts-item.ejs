@@ -1,0 +1,45 @@
+<% layout('layout') -%>
+
+<section class="contacts">
+    <div class="layout__wrapper">
+
+        <div class="contacts__item">
+            <div class="contacts__item-field">
+                Firstname
+            </div>
+            <div class="contacts__item-text">
+                <%=result.firstname %>
+            </div>
+        </div>
+
+        <div class="contacts__item">
+            <div class="contacts__item-field">
+                Lastname
+            </div>
+            <div class="contacts__item-text">
+                <%=result.lastname %>
+            </div>
+        </div>
+
+        <div class="contacts__item">
+            <div class="contacts__item-field">
+                Phone
+            </div>
+            <div class="contacts__item-text">
+                <%=result.phone %>
+            </div>
+        </div>
+
+        <% if (result.additional) { %>
+            <div class="contacts__item">
+                <div class="contacts__item-field">
+                    Additional info
+                </div>
+                <div class="contacts__item-text">
+                    <%=result.additional %>
+                </div>
+            </div>
+        <% } %>
+
+    </div>
+</section>

@@ -15,6 +15,12 @@
         }
     };
 
+    Vue.directive('init', {
+        bind: function(el, binding, vnode) {
+            vnode.context['contact'][binding.arg] = binding.value;
+        }
+    })
+
     new Vue({
         el: '#app',
 
@@ -23,9 +29,10 @@
                 shared: store.state,
 
                 contact: {
-                    firstname: '',
-                    lastname: '',
-                    phone: ''
+                    firstname:  '',
+                    lastname:   '',
+                    phone:      '',
+                    additional: ''
                 },
 
                 message: {
@@ -34,15 +41,15 @@
                 },
 
                 search: {
-                    input: '',
-                    select: '0'
+                    query:  '',
+                    field:  'firstname'
                 }
             }
         },
 
         methods: {
             getAll: function () {
-                this.$http.get('/api/v1/contacts', {
+                this.$http.get('/api/v1/contacts', { params: this.search }, {
                     headers: {
                         'Access-Control-Allow-Origin': '*'
                     }
@@ -65,6 +72,20 @@
                         Object.keys(contact).forEach(function (key) {
                             contact[key] = '';
                         });
+                    }
+                });
+            },
+
+            update: function (id) {
+                var contact = this.contact;
+
+                this.$http.put('/api/v1/contacts/' + id, this.contact).then(function (response) {
+                    if (!response.data.response.status) {
+                        this.message.text = response.data.response.errors.replace(/[\r\n]+/g,'<br>');
+                        this.message.type = '_error';
+                    } else {
+                        this.message.text = 'Contact successfully updated';
+                        this.message.type = '_success';
                     }
                 });
             },
