@@ -1,0 +1,28 @@
+<% layout('layout') -%>
+
+<section class="contact">
+    <div class="layout__wrapper">
+        <div class="contact__form">
+            <div class="contact__form-info" v-html="message.text" :class="[message.type]"></div>
+            <form class="form contact__form" action="" method="post" @submit.prevent="add">
+
+                <div class="form__line">
+                    <input type="text" class="form__control" placeholder="Lastname" v-model="contact.lastname">
+                </div>
+
+                <div class="form__line">
+                    <input type="text" class="form__control" placeholder="Firstname" v-model="contact.firstname">
+                </div>
+
+                <div class="form__line">
+                    <input type="text" class="form__control" placeholder="Phone" v-model="contact.phone">
+                </div>
+
+                <div class="form__submit">
+                    <button class="button" type="submit">Add</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>

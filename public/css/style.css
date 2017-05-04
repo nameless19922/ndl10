@@ -1,0 +1,233 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+
+    color: #686868;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: .8px;
+}
+
+input,
+textarea,
+select {
+    display: block;
+    width: 100%;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    list-style-type: none;
+}
+
+.layout {
+
+}
+
+.layout__body {
+
+}
+
+.layout__wrapper {
+    max-width: 780px;
+    width: 90%;
+
+    margin: 0 auto;
+}
+
+.menu {
+    padding: 20px 0;
+
+    background-color: #26a69a;
+}
+
+.menu__list {
+
+}
+
+.menu__item {
+    float: left;
+}
+
+.menu__item:not(:first-child) {
+    margin-left: 30px;
+}
+
+
+
+.menu__item-a {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color .23s;
+}
+
+.menu__item-a:hover {
+    color: #ddd;
+}
+
+.contacts {
+    padding: 60px 0;
+}
+
+.contacts__filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contacts__filter-cell:first-child {
+    flex: 0 1 70%;
+}
+
+.contacts__filter-cell:last-child {
+    flex: 0 1 20%;
+}
+
+.contacts__list {
+    margin-top: 30px;
+}
+
+.contacts__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.contacts__item:not(:last-child) {
+    border-bottom: 1px solid #dedede;
+}
+
+.contacts__item-name {
+    margin-right: 20px;
+
+    color: #004d40;
+}
+
+.contacts__item-edit {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDEyOCAxMjg7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiMzMUFGOTE7fQoJLnN0MXtmaWxsOiNGRkZGRkY7fQo8L3N0eWxlPjxjaXJjbGUgY2xhc3M9InN0MCIgY3g9IjY0IiBjeT0iNjQiIHI9IjY0Ii8+PGc+PHBhdGggY2xhc3M9InN0MSIgZD0iTTg3LjQsNTAuNWw5LjktOS45YzAuNC0wLjQsMC40LTEsMC0xLjRsLTguNS04LjVjLTAuNC0wLjQtMS0wLjQtMS40LDBsLTkuOSw5LjlMODcuNCw1MC41eiIvPjxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik03NC42LDQzLjVMMzgsODAuMWwtNC40LDEzYy0wLjMsMC44LDAuNSwxLjUsMS4zLDEuM2wxMy00LjRsMzYuNi0zNi42TDc0LjYsNDMuNXoiLz48L2c+PC9zdmc+) no-repeat;
+    background-size: contain;
+}
+
+.contacts__item-remove {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDEyOCAxMjg7IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAxMjggMTI4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtmaWxsOiMzMUFGOTE7fQoJLnN0MXtmaWxsOiNGRkZGRkY7fQo8L3N0eWxlPjxjaXJjbGUgY2xhc3M9InN0MCIgY3g9IjY0IiBjeT0iNjQiIHI9IjY0Ii8+PHBhdGggY2xhc3M9InN0MSIgZD0iTTEwMyw1N0g3MVYyNWMwLTAuNi0wLjQtMS0xLTFINThjLTAuNiwwLTEsMC40LTEsMXYzMkgyNWMtMC42LDAtMSwwLjQtMSwxdjEyYzAsMC42LDAuNCwxLDEsMWgzMnYzMiAgYzAsMC42LDAuNCwxLDEsMWgxMmMwLjYsMCwxLTAuNCwxLTFWNzFoMzJjMC42LDAsMS0wLjQsMS0xVjU4QzEwNCw1Ny40LDEwMy42LDU3LDEwMyw1N3oiLz48L3N2Zz4=);
+    background-size: contain;
+    transform: rotateZ(45deg);
+}
+
+.contact {
+    padding: 60px 0;
+}
+
+.contact__form {
+    margin-top: 25px;
+}
+
+.contact__form-info {
+    line-height: 1.5;
+}
+
+.contact__form-info._error {
+    color: #f77;
+}
+
+.contact__form-info._success {
+    color: #008000;
+}
+
+.form {
+    display: block;
+}
+
+.form__line:not(:first-child) {
+    margin-top: 20px;
+}
+
+.form__submit {
+    margin-top: 30px;
+}
+
+.form__control {
+    padding-bottom: 10px;
+
+    border: none;
+    border-bottom: 2px solid #dedede;
+    font-size: 18px;
+}
+
+.form__select {
+    padding: 10px 0;
+}
+
+.button {
+    padding: 7px 20px;
+
+    background-color: #00897b;
+    border: 1px solid #00897b;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.error {
+    padding: 160px 0 0;
+}
+
+.error h1 {
+    margin: 0;
+
+    font-size: 108px;
+    letter-spacing: 10px;
+    line-height: 1;
+    text-align: center;
+}
+
+.error p {
+    font-size: 18px;
+    text-align: center;
+}
