@@ -49,7 +49,7 @@ module.exports = port => {
         );
     });
 
-    app.use(function(err, req, res, next){
+    app.use((err, req, res, next) => {
         res.status(err.status || 500)
             .render('500', {
                 title: 'Internal server error'
