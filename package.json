@@ -16,11 +16,10 @@
     "url": "https://github.com/nameless19922/ndl10/issues"
   },
   "homepage": "https://github.com/nameless19922/ndl10#readme",
-  "devDependencies": {
+  "dependencies": {
     "body-parser": "^1.17.1",
     "ejs-locals": "^1.0.2",
     "express": "^4.15.2",
-    "express-validator": "^3.2.0",
     "mongodb": "^2.2.26",
     "morgan": "^1.8.1",
     "schema-inspector": "^1.6.8",
