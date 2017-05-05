@@ -4,7 +4,7 @@
             contacts: []
         },
 
-        getContacts: function (contacts) {
+        addContacts: function (contacts) {
             this.state.contacts = contacts.slice();
         },
 
@@ -19,9 +19,9 @@
         bind: function(el, binding, vnode) {
             vnode.context['contact'][binding.arg] = binding.value;
         }
-    })
+    });
 
-    new Vue({
+    var vm = new Vue({
         el: '#app',
 
         data: function () {
@@ -54,7 +54,23 @@
                         'Access-Control-Allow-Origin': '*'
                     }
                 }).then(function (response) {
-                    store.getContacts(response.data.response.contacts);
+                    var result = response.data.response.contacts,
+                        search  = this.search;
+
+                    if (search.query.length) {
+                        result = result.map(function (item) {
+                            var field = search.field;
+
+                            item[field] = item[field].replace(
+                                new RegExp('(' + search.query + ')', 'gi'),
+                                '<b>$1</b>'
+                            );
+
+                            return item;
+                        });
+                    }
+
+                    store.addContacts(result);
                 });
             },
 

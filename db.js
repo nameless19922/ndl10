@@ -5,7 +5,7 @@ let state = {
 };
 
 module.exports = {
-    connect: (url, done) => {
+    connect(url)  {
         return new Promise((resolve, reject) => {
             if (state.db) {
                 resolve(true);
@@ -16,15 +16,15 @@ module.exports = {
                 resolve(true);
             }).catch(error => {
                 reject(error);
-            })
+            });
         });
     },
 
-    get: () => {
+    get() {
         return state.db;
     },
 
-    close: () => {
+    close() {
         if (state.db) {
             state.db.close();
         }

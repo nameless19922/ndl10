@@ -35,24 +35,21 @@ module.exports = port => {
 
     app.use((req, res, next) => {
         res.status(404)
-            .render('404', {
-                title: 'Page not found'
+            .render('error', {
+                title: 404,
+                message: 'Page not found'
             });
     });
 
     app.use('/api', (err, req, res, next) => {
-        handleErrors(
-            200,
-            res,
-            0,
-            err.message
-        );
+        handleErrors(200, res, 0, err.message);
     });
 
     app.use((err, req, res, next) => {
         res.status(err.status || 500)
-            .render('500', {
-                title: 'Internal server error'
+            .render('error', {
+                title: 500,
+                message: 'Internal server error'
             });
     });
 

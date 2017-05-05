@@ -23,8 +23,11 @@
         <ul class="contacts__list">
             <li class="contacts__item" v-for="contact in shared.contacts">
                 <div class="contacts__item-cell">
-                    <a class="contacts__item-name" :href="'/contacts/id/' + contact._id">{{ contact.firstname }} {{ contact.lastname }}</a> {{ contact.phone }}
+                    <a class="contacts__item-name" :href="'/contacts/id/' + contact._id">
+                        <span v-html="contact.firstname"></span> <span v-html="contact.lastname"></span>
+                    </a>
                 </div>
+                <div class="contacts__item-cell" v-html="contact.phone"></div>
                 <div class="contacts__item-cell">
                     <a class="contacts__item-edit" :href="'/contacts/edit/' + contact._id"></a>
                     <a class="contacts__item-remove" href="javascript:;" @click.prevent="remove(contact._id)"></a>

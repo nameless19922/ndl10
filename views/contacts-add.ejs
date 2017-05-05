@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="form__line">
-                    <input id="phone" type="text" class="form__control" placeholder="Phone" v-model="contact.phone">
+                    <the-mask class="form__control" placeholder="Phone" v-model="contact.phone" mask="+7 ### ### ####" v-bind:masked="true" />
                 </div>
 
                 <div class="form__line">

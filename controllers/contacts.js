@@ -6,8 +6,8 @@ const Contacts = require(path.join(cwd, './models/contacts'));
 
 router.get('/', (req, res) => {
    res.render('contacts', {
-      title: 'Contact list'
-   });
+        title: 'Contact list'
+    });
 });
 
 router.get('/id/:id', (req, res) => {
@@ -18,7 +18,7 @@ router.get('/id/:id', (req, res) => {
                 result
             });
         } else {
-            res.redirect('/contracts');
+            res.redirect('/contacts');
         }
     }).catch(errors => {
         res.redirect('/contacts');
@@ -33,7 +33,7 @@ router.get('/edit/:id', (req, res) => {
                 result
             });
         } else {
-            res.redirect('/contracts');
+            res.redirect('/contacts');
         }
     }).catch(errors => {
         res.redirect('/contacts');

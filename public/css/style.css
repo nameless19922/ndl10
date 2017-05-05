@@ -135,15 +135,43 @@ ul {
     margin-top: 30px;
 }
 
+.contacts__link {
+    margin-bottom: 30px;
+}
+
+.contacts__link a {
+    color: #004d40;
+    font-size: 16px;
+}
+
 .contacts__item {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 60px;
 }
 
+.contacts__item-cell {
+    flex: 1 1 auto;
+}
+
+.contacts__item-cell:first-child {
+    flex: 0 1 160px;
+}
+
+.contacts__item-cell:last-child {
+    flex: 0 1 50px;
+}
+
 .contacts__item-field {
+    flex: 0 1 50%;
+
     font-size: 24px;
+}
+
+.contacts__item-text:last-child {
+    flex: 0 1 50%;
+
+    text-align: right;
 }
 
 .contacts__item:not(:last-child) {

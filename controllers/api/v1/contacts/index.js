@@ -44,95 +44,41 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     Contacts.get(req.params.id).then(result => {
-        if (result) {
-            handleResult(res, result);
-        } else {
-            handleErrors(
-                200,
-                res,
-                0,
-                'Invalid id'
-            );
-        }
+        result ? handleResult(res, result) : handleErrors(200, res, 0, 'Invalid id');
     }).catch(errors => {
-        handleErrors(
-            200,
-            res,
-            0,
-            errors
-        );
+        handleErrors(200, res, 0, errors);
     });
 });
 
 router.post('/', (req, res) => {
     Contacts.add(req.body).then(result => {
-        handleMessage(
-            200,
-            res,
-            1,
-            'Contact successfully created'
-        );
+        handleMessage(200, res, 1, 'Contact successfully created');
     }).catch(errors => {
-        handleErrors(
-            200,
-            res,
-            0,
-            errors
-        );
+        handleErrors(200, res, 0, errors);
     })
 });
 
 router.put('/:id', (req, res) => {
     Contacts.update(req.params.id, req.body).then(result => {
-        if (result.nMatched) {
-            handleMessage(
-                200,
-                res,
-                1,
-                'Contact successfully updated'
-            );
+        if (result.modifiedCount) {
+            handleMessage(200, res, 1, 'Contact successfully updated');
         } else {
-            handleErrors(
-                200,
-                res,
-                0,
-                'Invalid id'
-            );
+            handleErrors(200, res, 0, 'Invalid id');
         }
     }).catch(errors => {
-        handleErrors(
-            200,
-            res,
-            0,
-            errors
-        );
+        handleErrors(200, res, 0, errors);
     })
 });
 
 router.delete('/:id', (req, res) => {
     Contacts.remove(req.params.id).then(result => {
-        if (result.nRemoved) {
-            handleMessage(
-                200,
-                res,
-                1,
-                'Contact successfully removed'
-            );
+        if (result.result.n) {
+            handleMessage(200, res, 1, 'Contact successfully removed');
         } else {
-            handleErrors(
-                200,
-                res,
-                0,
-                'Invalid id'
-            );
+            handleErrors(200, res, 0, 'Invalid id');
         }
     }).catch(errors => {
-        handleErrors(
-            200,
-            res,
-            0,
-            errors
-        );
+        handleErrors(200, res, 0, errors);
     })
 });
 

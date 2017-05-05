@@ -19,7 +19,7 @@ const validation = {
     properties: {
         firstname: { type: 'string',  minLength: 6 },
         lastname:  { type: 'string',  minLength: 6 },
-        phone:     { type: 'string',  minLength: 6, pattern: 'numeric' }
+        phone:     { type: 'string',  minLength: 6, pattern: /^\+7 \d{3} \d{3} \d{4}$/ }
     }
 };
 
@@ -74,7 +74,14 @@ module.exports = {
         const result = inspector.validate(validation, contact);
 
         if (id.length === length) {
-            return result.valid ? db.get().collection('contacts').update( { _id: new mongodb.ObjectID(id) }, { $set: contact }) : Promise.reject(result.format());
+            if (result.valid) {
+                return db.get().collection('contacts').updateOne(
+                    { _id: new mongodb.ObjectID(id) },
+                    { $set: contact }
+                );
+            } else {
+                return Promise.reject(result.format());
+            }
         } else {
             return Promise.reject('Invalid id');
         }
@@ -85,7 +92,7 @@ module.exports = {
         const length = 24;
 
         return id.length === length ?
-            db.get().collection('contacts').remove({ _id: new mongodb.ObjectID(id) }) :
+            db.get().collection('contacts').remove({ _id: new mongodb.ObjectID(id) }, true) :
                 Promise.reject('Invalid id');
     }
 }

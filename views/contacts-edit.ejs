@@ -3,6 +3,10 @@
 
 <section class="contact">
     <div class="layout__wrapper">
+        <div class="contacts__link">
+            <a href="/contacts/id/<%=result._id %>">Show contact</a>
+        </div>
+
         <div class="contact__form">
             <div class="contact__form-info" v-html="message.text" :class="[message.type]"></div>
             <form class="form contact__form" action="" method="post" @submit.prevent="update('<%=result._id %>')">
@@ -16,7 +20,7 @@
                 </div>
 
                 <div class="form__line">
-                    <input id="phone" type="text" class="form__control" placeholder="Phone" v-model="contact.phone" v-init:phone="'<%=result.phone %>'">
+                    <input type="text" class="form__control" placeholder="Phone" v-model="contact.phone" v-init:phone="'<%=result.phone %>'">
                 </div>
 
                 <div class="form__line">
