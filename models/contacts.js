@@ -17,9 +17,9 @@ const validation = {
     type: 'object',
 
     properties: {
-        firstname: { type: 'string',  minLength: 6 },
-        lastname:  { type: 'string',  minLength: 6 },
-        phone:     { type: 'string',  minLength: 6, pattern: /^\+7 \d{3} \d{3} \d{4}$/ }
+        firstname: { type: 'string',  minLength: 4 },
+        lastname:  { type: 'string',  minLength: 4 },
+        phone:     { type: 'string',  pattern: /^\+7 \d{3} \d{3} \d{4}$/ }
     }
 };
 

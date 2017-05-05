@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     Contacts.update(req.params.id, req.body).then(result => {
-        if (result.modifiedCount) {
+        if (result.matchedCount) {
             handleMessage(200, res, 1, 'Contact successfully updated');
         } else {
             handleErrors(200, res, 0, 'Invalid id');
