@@ -1,7 +1,7 @@
 const cwd      = process.cwd();
-const express = require('express');
+const express  = require('express');
 const path     = require('path');
-const router  = express.Router();
+const router   = express.Router();
 const Contacts = require(path.join(cwd, './models/contacts'));
 
 router.get('/', (req, res) => {
