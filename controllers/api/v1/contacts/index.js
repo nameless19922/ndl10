@@ -111,13 +111,29 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     Contacts.remove(req.params.id).then(result => {
-        handleMessage(
+        if (result) {
+            handleMessage(
+                200,
+                res,
+                1,
+                'Contact successfully removed'
+            );
+        } else {
+            handleErrors(
+                200,
+                res,
+                0,
+                'Invalid id'
+            );
+        }
+    }).catch(errors => {
+        handleErrors(
             200,
             res,
-            1,
-            'Contact successfully removed'
+            0,
+            errors
         );
-    });
+    })
 });
 
 module.exports = router;

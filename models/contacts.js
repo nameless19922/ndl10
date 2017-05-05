@@ -56,7 +56,7 @@ module.exports = {
 
         return id.length === length ?
             db.get().collection('contacts').findOne({ _id: new mongodb.ObjectID(id) }) :
-                Promise.reject('Incorrect id');
+                Promise.reject('Invalid id');
     },
 
     add: contact => {
@@ -70,9 +70,15 @@ module.exports = {
     update: (id, contact) => {
         inspector.sanitize(sanitization, contact);
 
+        const length = 24;
         const result = inspector.validate(validation, contact);
 
-        return result.valid ? db.get().collection('contacts').update( { _id: new mongodb.ObjectID(id) }, { $set: contact }) : Promise.reject(result.format());
+        if (id.length === length) {
+            return result.valid ? db.get().collection('contacts').update( { _id: new mongodb.ObjectID(id) }, { $set: contact }) : Promise.reject(result.format());
+        } else {
+            return Promise.reject('Invalid id');
+        }
+
     },
 
     remove: id => {
@@ -80,6 +86,6 @@ module.exports = {
 
         return id.length === length ?
             db.get().collection('contacts').remove({ _id: new mongodb.ObjectID(id) }) :
-                Promise.reject('Incorrect id');
+                Promise.reject('Invalid id');
     }
 }

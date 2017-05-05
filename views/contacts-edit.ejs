@@ -8,11 +8,11 @@
             <form class="form contact__form" action="" method="post" @submit.prevent="update('<%=result._id %>')">
 
                 <div class="form__line">
-                    <input type="text" class="form__control" placeholder="Lastname" v-model="contact.lastname" v-init:lastname="'<%=result.lastname %>'">
+                    <input type="text" class="form__control" placeholder="Firstname" v-model="contact.firstname" v-init:firstname="'<%=result.firstname %>'">
                 </div>
 
                 <div class="form__line">
-                    <input type="text" class="form__control" placeholder="Firstname" v-model="contact.firstname" v-init:firstname="'<%=result.firstname %>'">
+                    <input type="text" class="form__control" placeholder="Lastname" v-model="contact.lastname" v-init:lastname="'<%=result.lastname %>'">
                 </div>
 
                 <div class="form__line">
