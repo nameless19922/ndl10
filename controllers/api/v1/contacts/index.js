@@ -84,7 +84,7 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
     Contacts.update(req.params.id, req.body).then(result => {
-        if (result) {
+        if (result.nMatched) {
             handleMessage(
                 200,
                 res,
@@ -111,7 +111,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     Contacts.remove(req.params.id).then(result => {
-        if (result) {
+        if (result.nRemoved) {
             handleMessage(
                 200,
                 res,
