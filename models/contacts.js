@@ -48,7 +48,7 @@ module.exports = {
 
         let   search = result.valid ? { [params.field]: new RegExp(params.query, 'i') }  : {};
 
-        return db.get().collection('contacts').find(search).toArray();
+        return db.get().collection('contacts').find(search).sort( { _id: -1 } ).toArray();
     },
 
     get: id => {
